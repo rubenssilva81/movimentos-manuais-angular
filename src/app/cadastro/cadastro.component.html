@@ -1,0 +1,104 @@
+<h1>{{title}}</h1>
+<table cellspacing="10" cellpadding="0">
+  <tr>
+    <td>
+        <label for="mes">Mês:</label>
+    </td>
+    <td>
+        <label for="ano">Ano:</label>
+    </td>
+  </tr>
+  <tr>
+    <td>
+        <input id="mes" [(ngModel)]="movimentoManual.datMes" placeholder="mes" [disabled]="!inclusao">
+    </td>
+    <td>
+        <input id="ano" [(ngModel)]="movimentoManual.datAno" placeholder="ano" [disabled]="!inclusao">
+    </td>
+  </tr>  
+  <tr>
+    <td>
+      <label for="produto">Produto:</label>
+    </td>
+    <td>
+      <label for="cosif">Cosif:</label>
+    </td>  
+  </tr>
+  <tr>
+    <td>
+        <select id="produto"
+            [(ngModel)]="movimentoManual.codProduto"
+            (ngModelChange)="produtoOnChange($event)" [disabled]="!inclusao">
+            <option *ngFor="let p of produtos" [value]="p.codProduto">{{ p.desProduto }}</option>
+        </select>
+    </td>
+    <td>
+        <select id="produtoCosif"
+            [(ngModel)]="movimentoManual.codCosif"
+            (ngModelChange)="produtoCosifOnChange($event)" [disabled]="!inclusao">            
+            <option *ngFor="let p of produtosCosif" [value]="p.codCosif">{{ p.codCosif }} - ({{p.codClassificacao}})</option>
+        </select>
+    </td>  
+  </tr>
+  <tr>
+    <td>
+      <label for="cosif">Valor:</label>
+    </td>
+    <td>
+    </td>  
+  </tr>
+  <tr>
+    <td>
+        <input id="valor" [(ngModel)]="movimentoManual.valValor" placeholder="valor" [disabled]="!inclusao">      
+    </td>
+    <td>
+    </td>  
+  </tr>  
+  <tr>
+    <td>
+      <label for="cosif">Descrição:</label>
+    </td>
+    <td>
+    </td>  
+  </tr>
+  <tr>
+    <td>
+        <input id="descricao" [(ngModel)]="movimentoManual.desDescricao" placeholder="descricao" [disabled]="!inclusao">
+    </td>
+    <td>
+    </td>  
+  </tr>
+  <tr>
+    <td>
+      <div style="text-align: right;">
+        <button (click)="limpar()">Limpar</button>
+        <button (click)="novo()">Novo</button>
+        <button (click)="inserir()">Incluir</button>
+      </div>
+    </td>
+    <td>
+    </td>  
+  </tr>    
+</table>
+
+<br/>
+<table cellspacing="10" cellpadding="1">
+    <tr>
+        <td><b>Mês</b></td>
+        <td><b>Ano</b></td>
+        <td><b>Código do Produto</b></td>
+        <td><b>Descrição do Produto</b></td>
+        <td><b>NR Lançamento</b></td>
+        <td><b>Descrição</b></td>
+        <td><b>Valor</b></td>
+    </tr>
+    <tr *ngFor="let mm of movimentosManuais">        
+        <td>{{mm.datMes}}</td>
+        <td>{{mm.datAno}}</td>
+        <td>{{mm.codProduto}}</td>
+        <td>{{mm.desProduto}}</td>
+        <td>{{mm.numLancamento}}</td>
+        <td>{{mm.desDescricao}}</td>
+        <td>{{mm.valValor}}</td>
+    </tr>
+</table>
